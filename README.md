@@ -1,4 +1,46 @@
 # visualGraphs
+
+Simple visualization of depth-first search in the graph, then highlighting the loop (if there is one) and breadth-first search.
+
+Vertexes without color are unvisited. Grey vertexes were visited and their adjacent nodes are currently visited. Black vertexes are visited including their adjacent nodes. Red vertices are located in one of the graph cycles.
+
+The current node has blue colored mark with symbol "v".The current adjacent node has greem colored mark with symbol "to".
+
+LAUNCH NOTES:
+
+1. When you starting a project using the Main class, it is possible to add edges and specify the initial vertex of the depth-first search through the interface, but step-by-step visualization is not available, only the result. In the interface, you should first clear the fields, then write the names of vertexes in them.
+
+The first text field is for the starting vertex of the search.
+
+The next two fields are for the vertex that is the beginning of the arc and the vertex that is the end of the arc.
+To add an arc to the graph, fill in these two fields and click the "Add arc" button. The added arcs appear in the window behind the current window.
+
+To start visualization, click the "Start visualization" button.
+
+2. When you run the project through the Visual class, visualization of each step of the algorithm is available, but you need to manage the graph content through a file "graph.txt", located at the root of disk D (you can change the path inside the code). The file should be built according to the following rule:
+
+true/false (DFS/BFS)
+
+name_first_vertex
+
+vertex1 vertex2
+
+Where vertex1 is the name of the vertex that is the beginning of the arc, and vertex2 is the name of the vertex that is the end of the arc. There can be an unlimited number of such pairs of vertexes.
+
+Example input file:
+
+true
+
+A
+
+A B
+
+B C
+
+C A
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Простая визуацизация обхода в глубину в графе с последующем выделением цикла ( если он есть) и обхода в ширину
 
 
