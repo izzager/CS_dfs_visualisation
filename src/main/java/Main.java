@@ -12,7 +12,7 @@ public class Main {
 
     public static void run() {
         Visual visual = new Visual();
-        final JFrame window = new JFrame("Визуалицизация DFS и поиск цилка в графе");
+        final JFrame window = new JFrame("Визуалицизация DFS и поиск цикла в графе");
         //Событие "закрыть" при нажатии по крестику окна
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -32,34 +32,25 @@ public class Main {
         textField2.setColumns(5);
         textField2.setText("to");
 
-        JTextField addedEdges = new JTextField();
-        addedEdges.setBackground(Color.WHITE);
-        addedEdges.setColumns(30);
-        addedEdges.setText("Добавленные дуги");
-
         //Создадим панель
         JPanel panel = new JPanel();
 
         //Создадим кнопки
         JButton startButton = new JButton("Начать визуализацию");
-        JButton addEdgeButton = new JButton("Добавить ребро");
+        JButton addEdgeButton = new JButton("Добавить дугу");
 
+        System.setProperty("org.graphstream.ui", "swing");
+        visual.getGraph().display();
         //Событие для кнопки startButton
         startButton.addActionListener(e -> {
             window.setVisible(false);
             visual.setStartNode(startNodeField.getText());
-            System.setProperty("org.graphstream.ui", "swing");
-           visual.runVisual();
+            visual.runVisual();
         });
 
         addEdgeButton.addActionListener(e -> {
             visual.addEdgeVisual(textField1.getText(), textField2.getText());
-            if (addedEdges.getText().equals("") || addedEdges.getText().equals("Добавленные дуги")) {
-                addedEdges.setText( textField1.getText() + " " + textField2.getText());
-            } else {
-                addedEdges.setText(addedEdges.getText() + ", " +
-                        textField1.getText() + " " + textField2.getText());
-            }
+            visual.makeLabels(visual.getGraph());
         });
 
         //Добавим кнопки и поля на панель
@@ -68,7 +59,6 @@ public class Main {
         panel.add(textField2);
         panel.add(addEdgeButton);
         panel.add(startButton);
-        panel.add(addedEdges);
 
         //Добавим панель в окно
         window.getContentPane().add(panel);
