@@ -17,6 +17,12 @@ public class Main {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Текстовое поле
+        JTextField dfsBfsField = new JTextField();
+        dfsBfsField.setBackground(Color.WHITE);
+        dfsBfsField.setColumns(10);
+        dfsBfsField.setText("DFS OR BFS");
+
+        //Текстовое поле
         JTextField startNodeField = new JTextField();
         startNodeField.setBackground(Color.WHITE);
         startNodeField.setColumns(5);
@@ -45,7 +51,15 @@ public class Main {
         startButton.addActionListener(e -> {
             window.setVisible(false);
             visual.setStartNode(startNodeField.getText());
-            visual.runVisual();
+
+            if (dfsBfsField.getText().equals("DFS")) {
+                visual.setFlagDFS(true);
+                visual.runVisual();
+            } else if (dfsBfsField.getText().equals("BFS")) {
+                visual.setFlagDFS(false);
+                visual.runVisual();
+            }
+
         });
 
         addEdgeButton.addActionListener(e -> {
@@ -54,6 +68,7 @@ public class Main {
         });
 
         //Добавим кнопки и поля на панель
+        panel.add(dfsBfsField);
         panel.add(startNodeField);
         panel.add(textField1);
         panel.add(textField2);
